@@ -1,0 +1,38 @@
+shop_list = {}
+shop_list["onion"] = "0.5 no"
+shop_list["carrot"] = "2 yes"
+shop_list["potato"] = "1 no"
+             
+def output_yes_no(value):
+    yes = []
+    no = []
+    for key in value.keys():        
+        temp = str(value.get(key)).split(' ')
+        if temp[1] == 'yes':
+            yes.append(key)
+            yes.append(value[key])
+        else:
+            no.append(key)
+            no.append(value[key])
+    yes_str = ' '.join(yes)
+    no_str = ' '.join(no)
+    print(yes_str, '\n', no_str)
+
+def add_buy(value):
+    key = value[0]
+    x = str(value[1]) + ' ' + str(value[2])
+    ques = any(shop_list[key])
+    if ques == True:
+        tmp = int(value[1]) +1
+        x2 = str(tmp) + ' ' + str(value[2])
+        shop_list[key] = x2
+    else:
+        val = ''.join(x)
+        shop_list[key] = val
+    print(shop_list)
+
+
+add_list = input("Input new product (example: chocolate 2 no): ").split(' ')
+add_buy(add_list)
+
+output_yes_no(shop_list)
